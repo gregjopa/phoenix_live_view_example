@@ -64,6 +64,29 @@ Hooks.SavedForm = {
   }
 }
 
+Hooks.Ads = {
+  mounted(){
+    console.log('running ads mounted() hook')
+
+    const googletag = window.googletag || {};
+    googletag.cmd = googletag.cmd || [];
+
+    googletag.cmd.push(() => {
+      const adContainers = document.querySelectorAll('.advertising')
+      console.log(adContainers)
+
+      adContainers.forEach(adContainer => {
+        googletag
+          .defineSlot("/35096353/amptesting/image/static", [300, 250], adContainer.id)
+          .addService(googletag.pubads());
+        googletag.enableServices();
+        googletag.display(adContainer.id);
+      })
+
+    });
+  }
+}
+
 let csrfToken = document.querySelector("meta[name='csrf-token']").getAttribute("content");
 let liveSocket = new LiveSocket("/live", Socket, {hooks: Hooks, params: {_csrf_token: csrfToken}})
 

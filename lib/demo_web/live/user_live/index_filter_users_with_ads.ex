@@ -4,7 +4,8 @@ defmodule DemoWeb.UserLive.IndexFilterUsersWithAds do
 
   def render(assigns) do
     ~L"""
-    <form phx-change="filter_change">
+    <script async src="https://www.googletagservices.com/tag/js/gpt.js"></script>
+    <form phx-change="filter_change" phx-hook="Ads">
       <div class="filters">
         <label>
           <input type="checkbox" id="even" name="even">
@@ -23,7 +24,11 @@ defmodule DemoWeb.UserLive.IndexFilterUsersWithAds do
         <%= for {user, index} <- @users do %>
           <%= if rem(index, 5) == 4 do %>
           <tr id="ad-<%= index %>" style="background-color: whitesmoke;">
-            <td colspan="3">Ad with random number <%= :rand.uniform(9999) %></td>
+            <td colspan="3">
+              Ad with random number
+              <%= :rand.uniform(9999) %>
+              <div id="ad-iframe-container-<%= index %>" class="advertising" phx-update="ignore"></div>
+            </td>
           </tr>
           <% end %>
           <tr id="user-<%= user.id %>">
