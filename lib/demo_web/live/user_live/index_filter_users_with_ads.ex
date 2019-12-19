@@ -27,7 +27,9 @@ defmodule DemoWeb.UserLive.IndexFilterUsersWithAds do
             <td colspan="3">
               Ad with random number
               <%= :rand.uniform(9999) %>
-              <div id="ad-iframe-container-<%= index %>" class="advertising" phx-update="ignore"></div>
+              <div id="ad-iframe-container-<%= index %>" class="advertising">
+                <div phx-update="ignore"></div>
+              </div>
             </td>
           </tr>
           <% end %>

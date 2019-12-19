@@ -74,12 +74,15 @@ Hooks.Ads = {
     googletag.cmd.push(() => {
       // display an ad in the first container only since there's only one demo ad slot to use
       const adContainer = document.querySelector('.advertising')
+      const phxIgnoreContainer = adContainer.querySelector('div')
+      if (!phxIgnoreContainer) return
+      phxIgnoreContainer.id = 'phx-ignore-' + adContainer.id
 
       googletag
-        .defineSlot("/35096353/amptesting/image/static", [300, 250], adContainer.id)
+        .defineSlot("/35096353/amptesting/image/static", [300, 250], phxIgnoreContainer.id)
         .addService(googletag.pubads());
       googletag.enableServices();
-      googletag.display(adContainer.id);
+      googletag.display(phxIgnoreContainer.id);
     });
   }
 }
