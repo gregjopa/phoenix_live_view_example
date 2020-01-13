@@ -111,23 +111,23 @@ Hooks.Ads = {
     adModule.setupSlotById('ad-2');
 
     // create custom event listener to manually trigger the beforeUpdated() hook
-    document.querySelector('input[type="checkbox"]').addEventListener('click', function () {
-      Hooks.Ads.beforeUpdated();
-    });
+    // document.querySelector('input[type="checkbox"]').addEventListener('click', function () {
+    //   Hooks.Ads.beforeUpdated();
+    // });
 
   },
-  updated(){
-    console.log('updated() hook');
+  // updated(){
+  //   console.log('updated() hook');
 
-    // only set up the second ad slot since it gets destroyed every time the list updates
-    adModule.setupSlotById('ad-2');
-  },
-  beforeUpdated(){
-    console.log('pretend beforeUpdated() hook')
-    // only destroy the second ad slot since it's inside a dynamic list
-    // and can't be ignored by phx-update="ignore"
-    adModule.destroySlotById('ad-2');
-  }
+  //   // only set up the second ad slot since it gets destroyed every time the list updates
+  //   adModule.setupSlotById('ad-2');
+  // },
+  // beforeUpdated(){
+  //   console.log('pretend beforeUpdated() hook')
+  //   // only destroy the second ad slot since it's inside a dynamic list
+  //   // and can't be ignored by phx-update="ignore"
+  //   adModule.destroySlotById('ad-2');
+  // }
 }
 
 let csrfToken = document.querySelector("meta[name='csrf-token']").getAttribute("content");
