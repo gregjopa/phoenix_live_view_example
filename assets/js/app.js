@@ -106,27 +106,22 @@ const adModule = {
 Hooks.Ads = {
   mounted(){
     console.log('mounted() hook')
-
     adModule.setupSlotById('ad-1');
     adModule.setupSlotById('ad-2');
-
-    // create custom event listener to manually trigger the beforeUpdated() hook
-    document.querySelector('input[type="checkbox"]').addEventListener('click', function () {
-      Hooks.Ads.beforeUpdated();
-    });
-
   },
   updated(){
     console.log('updated() hook');
-
     // only set up the second ad slot since it gets destroyed every time the list updates
     adModule.setupSlotById('ad-2');
   },
-  beforeUpdated(){
-    console.log('pretend beforeUpdated() hook')
+  beforeUpdate(){
+    console.log('beforeUpdated() hook')
     // only destroy the second ad slot since it's inside a dynamic list
     // and can't be ignored by phx-update="ignore"
     adModule.destroySlotById('ad-2');
+  },
+  beforeDestroy(){
+    console.log('beforeDestroy() should never fire for this use case')
   }
 }
 
